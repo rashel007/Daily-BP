@@ -13,6 +13,8 @@
 		26EFF46F1DB2AE370066DE6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26EFF46D1DB2AE370066DE6C /* Main.storyboard */; };
 		26EFF4711DB2AE370066DE6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26EFF4701DB2AE370066DE6C /* Assets.xcassets */; };
 		26EFF4741DB2AE370066DE6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26EFF4721DB2AE370066DE6C /* LaunchScreen.storyboard */; };
+		26EFF4801DB2B5BA0066DE6C /* SingleBPRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EFF47F1DB2B5BA0066DE6C /* SingleBPRow.m */; };
+		26EFF4831DB2B6C10066DE6C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EFF4821DB2B6C10066DE6C /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,9 @@
 		26EFF4701DB2AE370066DE6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26EFF4731DB2AE370066DE6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26EFF4751DB2AE370066DE6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26EFF47E1DB2B5BA0066DE6C /* SingleBPRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleBPRow.h; sourceTree = "<group>"; };
+		26EFF47F1DB2B5BA0066DE6C /* SingleBPRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleBPRow.m; sourceTree = "<group>"; };
+		26EFF4821DB2B6C10066DE6C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26EFF4831DB2B6C10066DE6C /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +50,7 @@
 			children = (
 				26EFF4631DB2AE370066DE6C /* Daily BP */,
 				26EFF4621DB2AE370066DE6C /* Products */,
+				26EFF4811DB2B6C10066DE6C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +65,10 @@
 		26EFF4631DB2AE370066DE6C /* Daily BP */ = {
 			isa = PBXGroup;
 			children = (
-				26EFF4671DB2AE370066DE6C /* AppDelegate.h */,
-				26EFF4681DB2AE370066DE6C /* AppDelegate.m */,
-				26EFF46A1DB2AE370066DE6C /* ViewController.h */,
-				26EFF46B1DB2AE370066DE6C /* ViewController.m */,
-				26EFF46D1DB2AE370066DE6C /* Main.storyboard */,
+				26EFF47D1DB2AE580066DE6C /* viewControllers */,
+				26EFF47C1DB2AE4F0066DE6C /* storyBoards */,
+				26EFF47B1DB2AE420066DE6C /* specialClasses */,
 				26EFF4701DB2AE370066DE6C /* Assets.xcassets */,
-				26EFF4721DB2AE370066DE6C /* LaunchScreen.storyboard */,
 				26EFF4751DB2AE370066DE6C /* Info.plist */,
 				26EFF4641DB2AE370066DE6C /* Supporting Files */,
 			);
@@ -77,6 +81,43 @@
 				26EFF4651DB2AE370066DE6C /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		26EFF47B1DB2AE420066DE6C /* specialClasses */ = {
+			isa = PBXGroup;
+			children = (
+				26EFF4671DB2AE370066DE6C /* AppDelegate.h */,
+				26EFF4681DB2AE370066DE6C /* AppDelegate.m */,
+			);
+			name = specialClasses;
+			sourceTree = "<group>";
+		};
+		26EFF47C1DB2AE4F0066DE6C /* storyBoards */ = {
+			isa = PBXGroup;
+			children = (
+				26EFF46D1DB2AE370066DE6C /* Main.storyboard */,
+				26EFF4721DB2AE370066DE6C /* LaunchScreen.storyboard */,
+			);
+			name = storyBoards;
+			sourceTree = "<group>";
+		};
+		26EFF47D1DB2AE580066DE6C /* viewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				26EFF46A1DB2AE370066DE6C /* ViewController.h */,
+				26EFF46B1DB2AE370066DE6C /* ViewController.m */,
+				26EFF47E1DB2B5BA0066DE6C /* SingleBPRow.h */,
+				26EFF47F1DB2B5BA0066DE6C /* SingleBPRow.m */,
+			);
+			name = viewControllers;
+			sourceTree = "<group>";
+		};
+		26EFF4811DB2B6C10066DE6C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				26EFF4821DB2B6C10066DE6C /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +191,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26EFF4801DB2B5BA0066DE6C /* SingleBPRow.m in Sources */,
 				26EFF46C1DB2AE370066DE6C /* ViewController.m in Sources */,
 				26EFF4691DB2AE370066DE6C /* AppDelegate.m in Sources */,
 				26EFF4661DB2AE370066DE6C /* main.m in Sources */,
