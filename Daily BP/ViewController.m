@@ -85,6 +85,76 @@
     }
 }
 
+
+
 - (IBAction)btnHistory:(id)sender {
+    
+    printf("History button pressed \n");
+    
+    sqlite3_stmt *statement;
+    
+    if(sqlite3_open([dbPathString UTF8String], &dailyBP) == SQLITE_OK){
+        
+        [arrayOfDailyBp removeAllObjects];
+        
+        NSString *querySql = [NSString stringWithFormat:@"SELECT * FROM DAILYBP"];
+        
+        char const *query_sql = [querySql UTF8String];
+        if(sqlite3_prepare_v2(dailyBP, query_sql, -1, &statement, NULL) == SQLITE_OK){
+            while (sqlite3_step(statement)==SQLITE_ROW) {
+                NSString *systolic = [[NSString alloc] initWithUTF8String: (const char *) sqlite3_column_text(statement, 1)];
+                NSString *diastolic = [[NSString alloc] initWithUTF8String: (const char *) sqlite3_column_text(statement, 2)];
+                NSString *comment = [[NSString alloc] initWithUTF8String: (const char *) sqlite3_column_text(statement, 3)];
+                
+                SingleBPRow *row = [[SingleBPRow alloc] init];
+                [row setSystolic:systolic];
+                [row setDiastolic:diastolic];
+                [row setComments:comment];
+                
+                [arrayOfDailyBp addObject: row];
+            }
+        }
+        
+    }
+    [[self myTableView] reloadData];
 }
+
+-(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [arrayOfDailyBp count];
+}
+
+-(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if(!cell){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    SingleBPRow *row = [arrayOfDailyBp objectAtIndex:indexPath.row];
+    
+    NSString *bp = [NSString stringWithFormat:@"%@ \\ %@", row.systolic, row.diastolic];
+    
+    cell.textLabel.text = bp;
+    cell.detailTextLabel.text = row.comments;
+    
+    return cell;
+}
+
+//-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return YES;
+//}
+
+//-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if(editingStyle == UITableViewCellEditingStyleDelete){
+//        SingleBPRow *row =
+//    }
+//}
+
+
+
 @end
