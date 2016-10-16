@@ -145,15 +145,33 @@
     return cell;
 }
 
-//-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return YES;
-//}
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
 
-//-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if(editingStyle == UITableViewCellEditingStyleDelete){
-//        SingleBPRow *row =
-//    }
-//}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        
+        SingleBPRow *row = [arrayOfDailyBp objectAtIndex:indexPath.row];
+        
+        [self deleteRow:[NSString stringWithFormat:@"DELETE FROM DAILYBP WHERE SYSTOLIC is '%s'",[row.systolic UTF8String]]];
+        [arrayOfDailyBp removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationRight];
+    }
+}
+
+-(void) deleteRow:(NSString *) deleteQuery{
+    char *err;
+    if(sqlite3_exec(dailyBP, [deleteQuery UTF8String], NULL, NULL, &err)){
+        printf("Row Deleted\n");
+    }else{
+        printf("Row not Deleted\n");
+    }
+}
+
+-(void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
 
 
 
